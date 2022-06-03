@@ -1,0 +1,18 @@
+if [ -f $1 ]
+then
+echo $1 'is file'
+elif [ -d $1 ]
+then
+echo $1 'is directory'
+else
+echo $1 'is somethinge else'
+fi
+
+
+//B-PART
+# converting all filenames to uppercase
+
+for file in *.txt ; do
+	mv $file 'copy'$file
+	mv 'copy'$file `echo $file | tr [:lower:] [:upper:]`
+done
