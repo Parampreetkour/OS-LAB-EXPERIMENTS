@@ -1,0 +1,22 @@
+# Prints a bunch of shell info
+
+printf 'My login shell: '; echo $SHELL; printf '\n'
+cat /etc/shells
+echo ''
+cat /etc/passwd
+
+
+// B-PART
+# Requires a CL arg as the file name, in which the current username will be stored
+
+touch $1
+whoami > $1
+more $1
+
+
+// C-PART
+# stores data about the current logged in user into a file; takes a filename as arg
+
+touch $1
+date; who > $1
+more $1
