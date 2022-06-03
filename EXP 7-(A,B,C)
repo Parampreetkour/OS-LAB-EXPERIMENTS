@@ -1,0 +1,37 @@
+# Uptime of user
+
+echo 'Enter login of the user'
+read name
+login_details=`who | grep -w $name | grep 'tty'`
+if [ $? -ne 0 ]; then
+	echo $name 'has not logged in yet'
+else
+	login_hrs=`echo $login_details | cat -c 26-27`
+	login_mins=`echo $login_details | cat -c 29-30`
+	hrs_now=`date | cat -c 12, 13`
+	mins_now=`date | cat -c 15, 16`
+	hrs=`expr $login_hrs - $hrs_now`
+	mins=`expr $login_mins - $mins_now`
+	echo $name 'is working for' $hrs ':' $mins
+fi
+
+
+//B-PART
+# pdisplay range of lines
+
+file=$1
+start=$2
+end=$3
+sed -n $start,$end\P $file
+
+
+//C-PART
+# Delete the lines containing a specific word
+
+if [ $# -lt 1 ]; then
+	echo 'Check arguments once'
+else
+	for file in *.txt; do
+		sed -i '/$1/d' ./file > ./'new'$file
+	done
+fi
